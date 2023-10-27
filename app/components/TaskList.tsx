@@ -1,7 +1,7 @@
 "use client";
-import { getTasks } from '@/api'
 import { TaskContext } from '@/providers/TaskProvider';
-import React, { useContext, useLayoutEffect, useState } from 'react'
+import React, { useContext} from 'react';
+import Task from './Task';
 
 const TaskList = () => {
     const {tasks, setTasks} = useContext(TaskContext);
@@ -13,19 +13,14 @@ const TaskList = () => {
             <thead>
             <tr>
                 <th></th>
+                <th>Done?</th>
                 <th>Tasks</th>
-                <th>Mark complete</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
                 {tasks.map((task, i) => (
-                    <tr key={i}>
-                        <th>{i+1}</th>
-                        <td className='w-full'>{task.text}</td>
-                        <td className='text-sky-600'>Mark</td>
-                        <td className='text-red-600'>Delete</td>
-                    </tr>
+                    <Task key={i} task={task} i={i} />
                 ))}
             </tbody>
         </table>
