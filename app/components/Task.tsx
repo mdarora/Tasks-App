@@ -3,6 +3,7 @@ import {BsTrash} from 'react-icons/bs';
 import React, { useContext, useState } from 'react';
 import { deleteTask, getTasks, markComplete } from '@/api';
 import { TaskContext } from '@/providers/TaskProvider';
+import Modal from './Modal';
 interface taskProps {
     task: Task,
     i: number
@@ -11,6 +12,8 @@ interface taskProps {
 const Task = ({task, i}: taskProps) => {
     const {tasks, setTasks} = useContext(TaskContext);
     const [completeMark, setCompleteMark] = useState(false);
+
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false)
 
     const handleCompleteMark = (e : any, id:string) => {
         setCompleteMark(e.target.checked);
@@ -29,8 +32,16 @@ const Task = ({task, i}: taskProps) => {
             </td>
             <td className='w-full'>{task.text}</td>
             <td className='text-red-600 dark:text-red-800'>
-                <BsTrash onClick={() => handleDelete(task.id)} cursor='pointer' size={20} />
+                <BsTrash onClick={() => setDeleteModalOpen(true)} cursor='pointer' size={20} />
             </td>
+
+            <Modal modalOpen={deleteModalOpen} setModalOpen={setDeleteModalOpen}>
+                <h2 className='mb-4'>Do you want to delete the task?</h2>
+                <div className='flex gap-4'>
+                    <button onClick={() => handleDelete(task.id)} className='btn btn-error'>Yes, Delete it</button>
+                    <button onClick={() => setDeleteModalOpen(false)} className='btn'>No, Keep it</button>
+                </div>
+            </Modal>
         </tr>
     )
 }

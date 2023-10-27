@@ -27,7 +27,7 @@ const AddTask = () => {
     <div>
         <button onClick={openModal} className='btn btn-primary text-white w-full'>Add Task <AiOutlinePlus /></button>
 
-        <Modal addModalOpen={addModalOpen} setAddModalOpen={setAddModalOpen}>
+        <Modal modalOpen={addModalOpen} setModalOpen={setAddModalOpen}>
             <h1 className='text-left my-2 text-xl font-bold'>Add new task</h1>
             <form onSubmit={handleAddTask} className='flex gap-2'>
                 <input autoFocus={true} value={taskInput} onChange={e => setTaskInput(e.target.value)} type="text" placeholder="Type task here" className="input input-bordered w-full dark:bg-slate-800 shadow" required/>
