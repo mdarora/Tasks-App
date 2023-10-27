@@ -22,7 +22,7 @@ const Task = ({task, i}: taskProps) => {
         setTasks(deleteTask(id));
     }
     return (
-        <tr className={`dark:text-white text-black ${task.isCompleted ? 'dark:text-gray-600 text-gray-300 line-through' : ''}`} key={i}>
+        <tr className={`dark:text-white text-black text-lg transition duration-300 ${task.isCompleted ? 'dark:text-gray-600 text-gray-300 line-through' : ''}`} key={i}>
             <th>{i + 1}</th>
             <td className='text-sky-600'>
                 <input onChange={e => handleCompleteMark(e, task.id)} type="checkbox" checked={task.isCompleted ? true : completeMark} className="checkbox" />
