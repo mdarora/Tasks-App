@@ -20,9 +20,10 @@ const Task = ({task, i}: taskProps) => {
         if(e.target.checked) markComplete(id);
         setTasks(getTasks());
     }
-
+    
     const handleDelete = (id : string) => {
         setTasks(deleteTask(id));
+        setDeleteModalOpen(false)
     }
     return (
         <tr className={`dark:text-white text-black text-lg transition duration-300 ${task.isCompleted ? 'dark:text-gray-600 text-gray-300 line-through' : ''}`} key={i}>
