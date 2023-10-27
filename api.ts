@@ -8,7 +8,8 @@ export const getTasks = () : Task[]=>{
         localStorage.setItem('tasks', JSON.stringify([]));
         return [];
     }
-    return JSON.parse(tasks);
+    const parsedTasks = JSON.parse(tasks);
+    return parsedTasks;
 
 }
 
