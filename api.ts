@@ -38,3 +38,12 @@ export const markComplete = (id: string) : Task[]=>{
 
     return newTasks;
 }
+
+export const deleteTask = (id:string) :Task[] => {
+    const tasks = getTasks();
+
+    const newTasks = tasks.filter(task => task.id !== id);
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
+
+    return newTasks;
+}
