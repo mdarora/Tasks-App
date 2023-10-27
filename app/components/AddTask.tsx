@@ -12,18 +12,25 @@ const AddTask = () => {
 
     const handleAddTask : FormEventHandler<HTMLFormElement> = (e)=>{
         e.preventDefault();
+        document.querySelector('input')?.blur();
 
         setTasks(addTask(taskInput));
         setTaskInput('');
         setAddModalOpen(false);
     }
+
+    const openModal = () => {
+        setAddModalOpen(true);
+        document.querySelector('input')?.focus();
+    }
   return (
     <div>
-        <button onClick={() => setAddModalOpen(true)} className='btn btn-primary w-full'>Add Task <AiOutlinePlus className='font-bold' /></button>
+        <button onClick={openModal} className='btn btn-primary text-white w-full'>Add Task <AiOutlinePlus /></button>
+
         <Modal addModalOpen={addModalOpen} setAddModalOpen={setAddModalOpen}>
             <h1 className='text-left my-2 text-xl font-bold'>Add new task</h1>
             <form onSubmit={handleAddTask} className='flex gap-2'>
-                <input value={taskInput} onChange={e => setTaskInput(e.target.value)} type="text" placeholder="Type task here" className="input input-bordered w-full bg-slate-800 shadow" required/>
+                <input autoFocus={true} value={taskInput} onChange={e => setTaskInput(e.target.value)} type="text" placeholder="Type task here" className="input input-bordered w-full dark:bg-slate-800 shadow" required/>
                 <button type="submit" className='btn btn-primary'>Add</button>
             </form>
         </Modal>
