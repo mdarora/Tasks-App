@@ -20,7 +20,14 @@ const TaskList = () => {
             </thead>
             <tbody>
                 {tasks.map((task, i) => (
-                    <Task key={i} task={task} i={i} />
+                    task.isCompleted ? <></> : <>
+                        <Task key={i} task={task} i={i} />
+                    </>
+                ))}
+                {tasks.map((task, i) => (
+                    task.isCompleted ? <>
+                        <Task key={i} task={task} i={i} />
+                    </> : <></>
                 ))}
             </tbody>
         </table>
